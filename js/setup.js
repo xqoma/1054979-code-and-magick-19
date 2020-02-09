@@ -42,10 +42,21 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
+/**
+ * Выбирает случайный элемент массива
+ *
+ * @param {array} array
+ * @return {any} Элемент массива
+ */
 var getRandomArrayItem = function (array) {
   return array[Math.floor(Math.random() * array.length)];
 };
 
+/**
+ * Генерирует случайное описание мага
+ *
+ * @return {Object} Объект описывающий мага
+ */
 var getRandomWizard = function () {
   var firstAndLastNames = [
     getRandomArrayItem(FIRST_NAMES),
@@ -65,6 +76,12 @@ var getRandomWizard = function () {
   };
 };
 
+/**
+ * Создает DOM элемент мага
+ *
+ * @param {Object} wizard Объект описывающий мага
+ * @return {HTMLElement} DOM элемент мага
+ */
 var getWizardElement = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
 
@@ -75,6 +92,12 @@ var getWizardElement = function (wizard) {
   return wizardElement;
 };
 
+/**
+ * Вставляет элемены в DOM
+ *
+ * @param {Object[]} elements Элементы, которые будут вставлены
+ * @param {HTMLElement} parentElement Элемент, в который будут вставлены элементы
+ */
 var insertElements = function (elements, parentElement) {
   var fragment = document.createDocumentFragment();
   for (var i = 0; i < elements.length; i++) {
