@@ -42,14 +42,14 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
-var getRndArrItem = function (arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
+var getRandomArrayItem = function (array) {
+  return array[Math.floor(Math.random() * array.length)];
 };
 
-var getRndWizard = function () {
+var getRandomWizard = function () {
   var firstAndLastNames = [
-    getRndArrItem(FIRST_NAMES),
-    getRndArrItem(LAST_NAMES)
+    getRandomArrayItem(FIRST_NAMES),
+    getRandomArrayItem(LAST_NAMES)
   ];
 
   // Перемешиваю имя и фамилию
@@ -60,8 +60,8 @@ var getRndWizard = function () {
 
   return {
     name: firstAndLastNames[0] + ' ' + firstAndLastNames[1],
-    coatColor: getRndArrItem(COAT_COLORS),
-    eyesColor: getRndArrItem(EYES_COLORS)
+    coatColor: getRandomArrayItem(COAT_COLORS),
+    eyesColor: getRandomArrayItem(EYES_COLORS)
   };
 };
 
@@ -85,7 +85,7 @@ var insertElements = function (elements, parentElement) {
 
 var wizards = [];
 for (var j = 0; j < SIMILAR_WIZARD_COUNT; j++) {
-  wizards.push(getRndWizard());
+  wizards.push(getRandomWizard());
 }
 
 var wizardElemets = [];
