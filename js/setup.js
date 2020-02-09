@@ -42,11 +42,11 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
-var getRndWizard = function () {
-  var getRndArrItem = function (arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
-  };
+var getRndArrItem = function (arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+};
 
+var getRndWizard = function () {
   var firstAndLastNames = [
     getRndArrItem(FIRST_NAMES),
     getRndArrItem(LAST_NAMES)
