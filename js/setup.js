@@ -38,6 +38,13 @@ var EYES_COLORS = [
   'yellow',
   'green'
 ];
+var FIREBALL_COLORS = [
+  '#ee4830',
+  '#30a8ee',
+  '#5ce6c0',
+  '#e848d5',
+  '#e6e848'
+];
 var SIMILAR_WIZARD_COUNT = 4;
 
 var setupOpenElement = document.querySelector('.setup-open');
@@ -47,6 +54,7 @@ var setupOpenIconElement = document.querySelector('.setup-open-icon');
 var setupUserNameElement = document.querySelector('.setup-user-name');
 var wizardCoatElement = document.querySelector('.setup-wizard .wizard-coat');
 var wizardEyesElement = document.querySelector('.setup-wizard .wizard-eyes');
+var setupFireballWrapElement = document.querySelector('.setup-fireball-wrap');
 var similarWizardList = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
@@ -124,6 +132,7 @@ var showSetupModal = function () {
   setupUserNameElement.addEventListener('keydown', setupUserNameEscPressHandler);
   wizardCoatElement.addEventListener('click', wizardCoatClickHandler);
   wizardEyesElement.addEventListener('click', wizardEyesClickHandler);
+  setupFireballWrapElement.addEventListener('click', setupFireballClickHandler);
 };
 
 var closeSetupModal = function () {
@@ -134,6 +143,7 @@ var closeSetupModal = function () {
   setupUserNameElement.removeEventListener('keydown', setupUserNameEscPressHandler);
   wizardCoatElement.removeEventListener('click', wizardCoatClickHandler);
   wizardEyesElement.removeEventListener('click', wizardEyesClickHandler);
+  setupFireballWrapElement.removeEventListener('click', setupFireballClickHandler);
 };
 
 var setRandomWizardCoatColor = function () {
@@ -142,6 +152,10 @@ var setRandomWizardCoatColor = function () {
 
 var setRandomWizardEyesColor = function () {
   wizardEyesElement.style.fill = getRandomArrayItem(EYES_COLORS);
+};
+
+var setRandomSetupFireballColor = function () {
+  setupFireballWrapElement.style.background = getRandomArrayItem(FIREBALL_COLORS);
 };
 
 var setupCloseClickHandler = function () {
@@ -172,6 +186,10 @@ var wizardCoatClickHandler = function () {
 
 var wizardEyesClickHandler = function () {
   setRandomWizardEyesColor();
+};
+
+var setupFireballClickHandler = function () {
+  setRandomSetupFireballColor();
 };
 
 setupOpenElement.addEventListener('click', function () {
