@@ -1,5 +1,8 @@
 'use strict';
 
+var HIDING_CLASS_NAME = 'hidden';
+var ENTER_KEY = 'Enter';
+var ESC_KEY = 'Escape';
 var FIRST_NAMES = [
   'Иван',
   'Хуан Себастьян',
@@ -37,6 +40,11 @@ var EYES_COLORS = [
 ];
 var SIMILAR_WIZARD_COUNT = 4;
 
+var setupOpenElement = document.querySelector('.setup-open');
+var setupElement = document.querySelector('.setup');
+var setupCloseElement = document.querySelector('.setup-close');
+var setupOpenIconElement = document.querySelector('.setup-open-icon');
+var setupUserNameElement = document.querySelector('.setup-user-name');
 var similarWizardList = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
@@ -106,6 +114,54 @@ var insertElements = function (elements, parentElement) {
   parentElement.appendChild(fragment);
 };
 
+var showSetupModal = function () {
+  setupElement.classList.remove(HIDING_CLASS_NAME);
+  setupCloseElement.addEventListener('click', setupCloseClickHandler);
+  setupCloseElement.addEventListener('keydown', setupCloseEnterPressHandler);
+  document.addEventListener('keydown', setupModalEscPressHandler);
+  setupUserNameElement.addEventListener('keydown', setupUserNameEscPressHandler);
+};
+
+var closeSetupModal = function () {
+  setupElement.classList.add(HIDING_CLASS_NAME);
+  setupCloseElement.removeEventListener('click', setupCloseClickHandler);
+  setupCloseElement.removeEventListener('keydown', setupCloseEnterPressHandler);
+  document.removeEventListener('keydown', setupModalEscPressHandler);
+  setupUserNameElement.removeEventListener('keydown', setupUserNameEscPressHandler);
+};
+
+var setupCloseClickHandler = function () {
+  closeSetupModal();
+};
+
+var setupModalEscPressHandler = function (evt) {
+  if (evt.key === ESC_KEY) {
+    closeSetupModal();
+  }
+};
+
+var setupUserNameEscPressHandler = function (evt) {
+  if (evt.key === ESC_KEY) {
+    evt.stopPropagation();
+  }
+};
+
+var setupCloseEnterPressHandler = function (evt) {
+  if (evt.key === ENTER_KEY) {
+    closeSetupModal();
+  }
+};
+
+setupOpenElement.addEventListener('click', function () {
+  showSetupModal();
+});
+
+setupOpenIconElement.addEventListener('keydown', function (evt) {
+  if (evt.key === ENTER_KEY) {
+    showSetupModal();
+  }
+});
+
 var wizards = [];
 for (var j = 0; j < SIMILAR_WIZARD_COUNT; j++) {
   wizards.push(getRandomWizard());
@@ -119,4 +175,3 @@ for (var k = 0; k < wizards.length; k++) {
 insertElements(wizardElemets, similarWizardList);
 
 document.querySelector('.setup-similar').classList.remove('hidden');
-document.querySelector('.setup').classList.remove('hidden');
