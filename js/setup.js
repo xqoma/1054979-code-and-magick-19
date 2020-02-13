@@ -46,6 +46,7 @@ var setupCloseElement = document.querySelector('.setup-close');
 var setupOpenIconElement = document.querySelector('.setup-open-icon');
 var setupUserNameElement = document.querySelector('.setup-user-name');
 var wizardCoatElement = document.querySelector('.setup-wizard .wizard-coat');
+var wizardEyesElement = document.querySelector('.setup-wizard .wizard-eyes');
 var similarWizardList = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
@@ -122,6 +123,7 @@ var showSetupModal = function () {
   document.addEventListener('keydown', setupModalEscPressHandler);
   setupUserNameElement.addEventListener('keydown', setupUserNameEscPressHandler);
   wizardCoatElement.addEventListener('click', wizardCoatClickHandler);
+  wizardEyesElement.addEventListener('click', wizardEyesClickHandler);
 };
 
 var closeSetupModal = function () {
@@ -131,10 +133,15 @@ var closeSetupModal = function () {
   document.removeEventListener('keydown', setupModalEscPressHandler);
   setupUserNameElement.removeEventListener('keydown', setupUserNameEscPressHandler);
   wizardCoatElement.removeEventListener('click', wizardCoatClickHandler);
+  wizardEyesElement.removeEventListener('click', wizardEyesClickHandler);
 };
 
 var setRandomWizardCoatColor = function () {
   wizardCoatElement.style.fill = getRandomArrayItem(COAT_COLORS);
+};
+
+var setRandomWizardEyesColor = function () {
+  wizardEyesElement.style.fill = getRandomArrayItem(EYES_COLORS);
 };
 
 var setupCloseClickHandler = function () {
@@ -161,6 +168,10 @@ var setupCloseEnterPressHandler = function (evt) {
 
 var wizardCoatClickHandler = function () {
   setRandomWizardCoatColor();
+};
+
+var wizardEyesClickHandler = function () {
+  setRandomWizardEyesColor();
 };
 
 setupOpenElement.addEventListener('click', function () {
