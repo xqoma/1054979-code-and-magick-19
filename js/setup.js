@@ -132,7 +132,6 @@ var showSetupModal = function () {
   setupCloseElement.addEventListener('click', setupCloseClickHandler);
   setupCloseElement.addEventListener('keydown', setupCloseEnterPressHandler);
   document.addEventListener('keydown', setupModalEscPressHandler);
-  setupUserNameElement.addEventListener('keydown', setupUserNameEscPressHandler);
   wizardCoatElement.addEventListener('click', wizardCoatClickHandler);
   wizardEyesElement.addEventListener('click', wizardEyesClickHandler);
   setupFireballWrapElement.addEventListener('click', setupFireballClickHandler);
@@ -143,7 +142,6 @@ var closeSetupModal = function () {
   setupCloseElement.removeEventListener('click', setupCloseClickHandler);
   setupCloseElement.removeEventListener('keydown', setupCloseEnterPressHandler);
   document.removeEventListener('keydown', setupModalEscPressHandler);
-  setupUserNameElement.removeEventListener('keydown', setupUserNameEscPressHandler);
   wizardCoatElement.removeEventListener('click', wizardCoatClickHandler);
   wizardEyesElement.removeEventListener('click', wizardEyesClickHandler);
   setupFireballWrapElement.removeEventListener('click', setupFireballClickHandler);
@@ -172,14 +170,8 @@ var setupCloseClickHandler = function () {
 };
 
 var setupModalEscPressHandler = function (evt) {
-  if (evt.key === ESC_KEY) {
+  if (evt.target !== setupUserNameElement && evt.key === ESC_KEY) {
     closeSetupModal();
-  }
-};
-
-var setupUserNameEscPressHandler = function (evt) {
-  if (evt.key === ESC_KEY) {
-    evt.stopPropagation();
   }
 };
 
